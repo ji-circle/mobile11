@@ -16,9 +16,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //파이어베이스 초기화
         FirebaseApp.initializeApp(this)
-
 
         enableEdgeToEdge()
         setContent {

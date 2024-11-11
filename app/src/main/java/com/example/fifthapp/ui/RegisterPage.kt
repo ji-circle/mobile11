@@ -93,7 +93,6 @@ fun RegisterPage(
                 Text(text = "Go to login page")
             }
 
-            //버튼 눌렀을 떄 register 되어야 하니까
             Button(
                 modifier = Modifier.align(Alignment.End),
                 onClick = { registerUser(email, password) }
@@ -104,10 +103,10 @@ fun RegisterPage(
     }
 }
 
-//추가
 fun registerUser(email: String, password: String) {
-    //firebase auth에 관해서 연결... 이제 이 auth 를 통해 이메일, pw 받아서 등록/로그인함
     val auth = FirebaseAuth.getInstance()
 
+    //여긴 createUser임
+    // 근데 로그인도 연달아 된다...
     auth.createUserWithEmailAndPassword(email, password)
 }
