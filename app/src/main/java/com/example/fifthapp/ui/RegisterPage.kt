@@ -106,7 +106,5 @@ fun RegisterPage(
 fun registerUser(email: String, password: String) {
     val auth = FirebaseAuth.getInstance()
 
-    //여긴 createUser임
-    // 근데 로그인도 연달아 된다...
     auth.createUserWithEmailAndPassword(email, password)
 }
