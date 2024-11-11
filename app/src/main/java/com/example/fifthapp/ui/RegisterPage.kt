@@ -6,8 +6,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -20,14 +24,24 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginPage(
-    goToRegisterPage: () -> Unit
+fun RegisterPage(
+    backToLoginPage: () -> Unit
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(title = {
-                Text(text = "Login Page")
-            })
+            TopAppBar(
+                title = {
+                    Text(text = "Register Page")
+                },
+                navigationIcon = {
+                    IconButton(onClick = backToLoginPage) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "back"
+                        )
+                    }
+                }
+            )
         }
     ) { innerPadding ->
         Column(
@@ -46,6 +60,7 @@ fun LoginPage(
                     Text(text = "E-mail")
                 }
             )
+
             //텍스트필드 간 공백 주기
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -57,15 +72,14 @@ fun LoginPage(
                     Text(text = "Password")
                 }
             )
-            //텍스트필드-버튼 간 공백 주기
+
             Spacer(modifier = Modifier.height(8.dp))
 
-            //텍스트 버튼 만들기 - 레지스터 페이지로 이동하게.
             TextButton(
                 modifier = Modifier.align(Alignment.End),
-                onClick = goToRegisterPage
+                onClick = backToLoginPage
             ) {
-                Text(text = "Register your email")
+                Text(text = "Go to login page")
             }
 
             Button(
