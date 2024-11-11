@@ -39,11 +39,7 @@ fun LoginPage(
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
 
-    //여기 추가
     var isLoggedIn by rememberSaveable { mutableStateOf(false) }
-
-    //여기 있던 currentUser를 이동함... recomposition 문제 때문에
-//    val currentUser = FirebaseAuth.getInstance().currentUser
 
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -53,7 +49,6 @@ fun LoginPage(
                 },
                 actions = {
                     IconButton(
-                        //여기 내용 추가
                         onClick = {
                             logout()
                             isLoggedIn = false
@@ -63,7 +58,6 @@ fun LoginPage(
                             imageVector = Icons.AutoMirrored.Filled.ExitToApp,
                             contentDescription = "logout"
                         )
-
                     }
                 }
             )
@@ -109,7 +103,6 @@ fun LoginPage(
             Button(
                 modifier = Modifier.align(Alignment.End),
                 onClick = {
-                    //여기 내용 추가
                     loginUser(email, password)
                     isLoggedIn = true
                 }
@@ -117,12 +110,10 @@ fun LoginPage(
                 Text(text = "Login")
             }
 
-            //isLoggedIn의 값이 바뀌었을 때 이게 다시 recompositio이 일어나야 함
-            // 그 때 currentUser를 받아와서 그거의 email을 텍스트로 받아서 나타낸다
-            if (isLoggedIn){
+            if (isLoggedIn) {
                 val currentUser = FirebaseAuth.getInstance().currentUser
 
-                if (currentUser != null){
+                if (currentUser != null) {
                     currentUser.email?.let {
                         Text(
                             text = it,
@@ -131,14 +122,6 @@ fun LoginPage(
                     }
                 }
             }
-            //기존 아래 코드를 위로 바꿈
-//            //isLoggedIn이 바뀌었고, currentUser이 null이 아닐 때 로 수정.
-//            (if (isLoggedIn && currentUser != null) currentUser.email else "No user")?.let {
-//                Text(
-//                    text = it,
-//                    style = typography.titleLarge
-//                )
-//            }
         }
     }
 }
@@ -150,7 +133,6 @@ fun loginUser(email: String, password: String) {
     auth.signInWithEmailAndPassword(email, password)
 }
 
-//추가
 fun logout() {
     val auth = FirebaseAuth.getInstance()
 
