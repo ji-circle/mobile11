@@ -10,10 +10,16 @@ import androidx.navigation.compose.rememberNavController
 import com.example.fifthapp.ui.LoginPage
 import com.example.fifthapp.ui.RegisterPage
 import com.example.fifthapp.ui.theme.FifthAppTheme
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //파이어베이스 초기화
+        FirebaseApp.initializeApp(this)
+
+
         enableEdgeToEdge()
         setContent {
             FifthAppTheme {
@@ -22,16 +28,15 @@ class MainActivity : ComponentActivity() {
                 NavHost(
                     navController = navController,
                     startDestination = "login",
-                ){
-                    composable(route = "login"){
+                ) {
+                    composable(route = "login") {
                         LoginPage(goToRegisterPage = {
                             navController.navigate(route = "register")
                         })
                     }
 
-                    composable(route = "register"){
+                    composable(route = "register") {
                         RegisterPage(backToLoginPage = {
-                            //여기선 navigateUp이라고 했다!
                             navController.navigateUp()
                         })
                     }

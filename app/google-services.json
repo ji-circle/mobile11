@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "226021441632",
-    "project_id": "fifthapp-bc475",
-    "storage_bucket": "fifthapp-bc475.firebasestorage.app"
+    "project_number": "14093987463",
+    "project_id": "fifthapp3",
+    "storage_bucket": "fifthapp3.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:226021441632:android:77de596abf0517c86e8305",
+        "mobilesdk_app_id": "1:14093987463:android:604e8683855f9ddc515222",
         "android_client_info": {
           "package_name": "com.example.fifthapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCm0eReiRdR7G08eneQV2kJrwOMoE5JrLM"
+          "current_key": "AIzaSyCGzZnLq_wcLRAt6-T3s6BvAf5hJVuchDE"
         }
       ],
       "services": {

@@ -28,13 +28,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.google.firebase.auth.FirebaseAuth
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterPage(
     backToLoginPage: () -> Unit
 ) {
-    //상태 추가해주기 - 입력 위한
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
 
@@ -59,10 +59,8 @@ fun RegisterPage(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                //아래것들 바깥으로 패딩 주기
                 .padding(16.dp)
         ) {
-            //텍스트필드 2개와 버튼 하나 생성 - 로그인 정보 입력할부분
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = email,
@@ -73,7 +71,6 @@ fun RegisterPage(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
 
-            //텍스트필드 간 공백 주기
             Spacer(modifier = Modifier.height(8.dp))
 
             OutlinedTextField(
@@ -83,7 +80,6 @@ fun RegisterPage(
                 label = {
                     Text(text = "Password")
                 },
-                //입력창에 입력된 비번이 안보이게 하고싶을때
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
@@ -97,13 +93,21 @@ fun RegisterPage(
                 Text(text = "Go to login page")
             }
 
+            //버튼 눌렀을 떄 register 되어야 하니까
             Button(
-                //버튼 위치를 오른쪽으로 보냈다
                 modifier = Modifier.align(Alignment.End),
-                onClick = {}
+                onClick = { registerUser(email, password) }
             ) {
                 Text(text = "Register")
             }
         }
     }
+}
+
+//추가
+fun registerUser(email: String, password: String) {
+    //firebase auth에 관해서 연결... 이제 이 auth 를 통해 이메일, pw 받아서 등록/로그인함
+    val auth = FirebaseAuth.getInstance()
+
+    auth.createUserWithEmailAndPassword(email, password)
 }

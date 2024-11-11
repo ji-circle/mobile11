@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 fun LoginPage(
     goToRegisterPage: () -> Unit
 ) {
-    //상태 추가해주기 - 입력 위한
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
 
@@ -45,10 +44,8 @@ fun LoginPage(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                //아래것들 바깥으로 패딩 주기
                 .padding(16.dp)
         ) {
-            //텍스트필드 2개와 버튼 하나 생성 - 로그인 정보 입력할부분
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = email,
@@ -58,7 +55,6 @@ fun LoginPage(
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
-            //텍스트필드 간 공백 주기
             Spacer(modifier = Modifier.height(8.dp))
 
             OutlinedTextField(
@@ -68,14 +64,11 @@ fun LoginPage(
                 label = {
                     Text(text = "Password")
                 },
-                //입력창에 입력된 비번이 안보이게 하고싶을때
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
-            //텍스트필드-버튼 간 공백 주기
             Spacer(modifier = Modifier.height(8.dp))
 
-            //텍스트 버튼 만들기 - 레지스터 페이지로 이동하게.
             TextButton(
                 modifier = Modifier.align(Alignment.End),
                 onClick = goToRegisterPage
@@ -84,7 +77,6 @@ fun LoginPage(
             }
 
             Button(
-                //버튼 위치를 오른쪽으로 보냈다
                 modifier = Modifier.align(Alignment.End),
                 onClick = {}
             ) {
